@@ -1,0 +1,116 @@
+# Key terms
+
+- machine learning
+- supervised learning
+- unsupervised learning
+- classification
+- regression
+- discriminative learning
+- deep learning
+- activation function
+- active learning
+- area under ROC curve
+- artificial intelligence
+- precision, recall, accuracy...
+- batch, batch normalisation
+- bias
+- stacking, boosting, binning, bucketing
+- centroid
+- cluster
+- class
+- confusion matrix
+- continuous, discrete, categorical features...
+- convergence
+- convex function optimisation
+- convolution, filters, layers
+- cost, loss
+- cross-entropy
+- cross-validation
+- data analysis
+- data augmentation
+- dataset
+- decision boundary
+- decision tree
+- dense feature
+- sparse feature
+- dense / fully-connected layer
+- dimenion reduction
+- discriminitive model
+- dropout
+- early stopping
+- embedding
+- ensemble
+- eopch
+- TP, TN, FP, FN, rates for each
+- features
+- feature engineering
+- feature extraction
+- feature set
+- feed forward neural network
+- gradient descent 
+- ground truth
+- hidden layer
+- hinge loss
+- hyperparameter
+- hyperplane
+- independetly distributed
+- inference
+- in group bias
+- input function
+- input layer
+- interpretability
+- kernel svms
+- kmeans
+- kmedian?
+- l1, l2 loss and regularisation
+- label
+- layer
+- learning rate
+- least square regression
+- linear model
+- linear regression
+- logistic regression
+- log loss
+- loss
+- loss curve
+- machine learning
+- markov property
+- mean absolute error
+- mean squared error
+- metric
+- mini-batch
+- model
+- model training
+- momentum
+- neural network
+- gram matrix
+- noise
+- signal
+- normalisation
+- numerical data
+- objective function
+- one-hot encoding
+- one-shot learning
+- optimiser
+- outliers
+- output layer
+- overfitting / underfitting / generalisation
+- perceptron
+- pipeline
+- pooling
+- prediction
+- preprocessing
+- prior belief
+- random forrest
+- regression
+- sampling bias
+- selection bias
+- sigmoid, relu, tanh, selu, softmax...
+- sparsity
+- stochastic gradient descent
+- stride
+- transfer learning
+- unlabelled example
+- validation
+- vanishing gradient probelm
+- weight

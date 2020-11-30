@@ -2,31 +2,40 @@
 
 ## 1. Data Analysis
 
-### 1.1 Analysing data
+#### Data analysis
 - What is data?
 - What is data analysis?
+
+#### Unsupervised learning
 - What is unsupervised learning?
+
+#### MNIST
 - Initial analysis MNIST dataset
   - Size, shape, type
   - Features
   - Missing data, outliers etc.
   - Target feature of dataset (class)
 
-### The Curse Of Dimensionality
+#### The curse of dimensionality
 - Problems with high dimension data.
 - Relate to MNIST.
 - Decribe the curse of dimensionality.
 
-### Dimensionality Reduction
+#### Dimensionality reduction
 - What is dimensionality reduction
 - The aim of dimensionality reduction.
 - Main approaches:
   - Projection
   - Manifold
+- Common methods:
+  - PCA
+  - t-SNE
+  - Autoencoding
+  - ??
   
-### Principle Component Analysis
+### 1.1 Principle Component Analysis
 
-#### PCA:
+#### PCA
 - What is PCA?
   - Idea
   - Algorithm
@@ -50,51 +59,71 @@
     - Various kernels
   
 #### Visualisation with PCA
-- Data visualisation
-  - PCA to 2 dimensions
-    - Scatter plot
-    - Interpret results
+- PCA to 2 dimensions
+  - Scatter plot
+  - Interpret results
+
+#### Other dimensionality reduction methods for visualisation
   - t-SNE
     - PCA then t-SNE
     - Autoencoding?
 
 ### 1.2 Clustering
 
-- What is clustering
+#### Clustering
+- What is clustering?
 - Applications
 - Different approaches
   - KMeans
   - Gaussian mixtures
 
-### K-Means
+#### K-Means
+- What is K-Means?
+  - Idea
+  - Algorithm
 
-
+#### Clustering and visualising MNIST
 - 10 clusters, 2 dimensions
   - veronoi graph
   - accuracy
 
-- finding the optimal clusters (10)
+#### Finding the optimal number of clusters
   - inertia / elbow plot
   - silhouette score
   - silhouette diagram
   
-- higher-dimension clustering
+#### Clustering in high-dimensional space
   - various dimensions
   - various kernels
-  
+
+#### Limits of K-Means  
 - limits of kmeans
 
+#### Other clustering methods
   - analyse gaussian mixures
   - bayesian gaussian mixtures
   - dbscan?
 
 ### Conclusion
-
 - Final analysis of MNIST dataset
 
 ## 2. Classification
 
-- supervised learning
+#### Supervised learning
+- What is supervised learning?
+
+#### Classification
+- What is classification?
+
+#### MNIST
+- The aim of classification with MNIST
+- Recap analysis
+  - Size, shape, type
+  - Features
+  - Missing data, outliers etc.
+  - Target feature of dataset (class)
+
+#### Preparing the data
 - get the data
   - train, val test sets
   - cross validation
@@ -108,7 +137,6 @@ Train an ANN, plot the training and validation learning curves.  Does themodel o
 Train an SVM (with a chosen Kernel) and perform the same analyses as forANNs.   Interpret  and  discuss  your  results.   Does  the  model  overfit?   Howdo they compare with ANNs?  And why?  How does the type of kernel (e.g.linear, RBF, etc.) impact on performance?
 
 ### Comparison of Methods
-
 - Comparison of neural networks and support vector machines.
 
 ## 3. Regression
@@ -122,10 +150,13 @@ Train an SVM (with a chosen Kernel) and perform the same analyses as forANNs.   
 
 ### Bayesian Linear Regression
 
-In this task you are required to use PyMC3 to perform Bayesian linear re-gression on the California housing dataset which is easily available via thesklearn.datasets.fetchcaliforniahousing function.  The goal with this datasetis to predict the median house value in a ‘block’ in California.  A block isa small geographical area with a population of between 600 and 3000 peo-ple.   Each  datapoint  in  this  dataset  corresponds  to  a  block.   Consult  thescikit-learn documentation for details of the predictor variables. As  always  with  Bayesian  analysis  it  is  up  to  you  to  choose  your  priordistributions.  Be sure to justify your choice of priors in your report.  Whatdo  the  results  produced  by  PyMC3  tell  you  about  what  influences  housevalue in California?  Is it necessary and/or useful to transform the data insome way before running MCMC?
+- In this task you are required to use PyMC3 to perform Bayesian linear re-gression on the California housing dataset which is easily available via the `sklearn.datasets.fetch_californiahousing` function. 
+- The goal with this datasetis to predict the median house value in a ‘block’ in California. A block is a small geographical area with a population of between 600 and 3000 people. 
+- Each data point in  this dataset corresponds to a block. Consult the scikit-learn documentation for details of the predictor variables. 
+- As always with Bayesian analysis it is up to you to choose your prior distributions. Be sure to justify your choice of priors in your report. What do the results produced by PyMC3 tell you about what influences house value in California? 
+- Is it necessary and/or useful to transform the data in some way before running MCMC?
 
 ### Conclusion
-
 - Concluding points on things learnt from dataset.
 - Concluding points of Bayesian regression performance.
 
@@ -154,3 +185,10 @@ Bayesian linear regression and decision trees are two very different approachest
 1. When does stacking improve performance over the individual models (e.g. try stacking with a random forest with maxdepth=10 and nestimators=10)?
 2. What happens if we just take the mean prediction from our base models instead?
 3. Use a DecisionTreeRegressor as the finalestimator and visualise the tree to understand what stacking is doing.
+
+### Comparison of Methods
+- Comparison of random forrest and stacking methods
+  - Accuracy
+  - Computational complexity
+  - Data needed
+  - Generalisation / ease of use
