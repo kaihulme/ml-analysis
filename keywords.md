@@ -1,116 +1,188 @@
 # Key terms
 
+## Machine Learning
+
 - machine learning
-- supervised learning
-- unsupervised learning
-- classification
-- regression
-- discriminative learning
-- deep learning
-- activation function
-- active learning
-- area under ROC curve
 - artificial intelligence
-- precision, recall, accuracy...
-- batch, batch normalisation
-- bias
-- stacking, boosting, binning, bucketing
+- signal and the noise
+
+---
+
+## Data analysis
+
+- unsupervised learning
+- data analysis
+- dataset
+- features
+
+
+### PCA
+
+- dimensionality reduction
+- principal components
+- principle component analysis
+- the curse of dimensionality
+
+### KMeans
+
 - centroid
 - cluster
-- class
-- confusion matrix
-- continuous, discrete, categorical features...
-- convergence
-- convex function optimisation
-- convolution, filters, layers
-- cost, loss
-- cross-entropy
-- cross-validation
-- data analysis
-- data augmentation
-- dataset
-- decision boundary
-- decision tree
-- dense feature
-- sparse feature
-- dense / fully-connected layer
-- dimenion reduction
-- discriminitive model
-- dropout
-- early stopping
-- embedding
-- ensemble
-- eopch
-- TP, TN, FP, FN, rates for each
-- features
-- feature engineering
-- feature extraction
-- feature set
-- feed forward neural network
-- gradient descent 
-- ground truth
-- hidden layer
-- hinge loss
-- hyperparameter
-- hyperplane
-- independetly distributed
-- inference
-- in group bias
-- input function
-- input layer
-- interpretability
-- kernel svms
 - kmeans
 - kmedian?
-- l1, l2 loss and regularisation
-- label
-- layer
+
+---
+
+## Classification
+
+- classification
+- supervised learning
+- logistic regression
+- log loss
+
+- model
+- model training
+- model selection
+- no free lunch
+- overfitting / underfitting
+- hyperparameter
+- objective function
+- mean absolute error
+- mean squared error
+- parametric / nonparametric models
+- discriminitive / generative modelling
+
+
+### Neural networks
+
+- deep learning
+- neural network
+- perceptron
+- multi-layer perceptron
+
+- dense / fully-connected layer
+- hidden layer
+- input layer
+- input function
+- activation function
+- sigmoid, relu, tanh, selu, softmax...
+- output layer
+- weight
+- bias
+
+- cost
+- loss
+- optimiser
 - learning rate
+- convex function optimisation
+- stochastic gradient descent
+- backpropogation 
+- chain rule
+
+- feed forward neural network
+- epoch
+- convergence
+- cross-entropy
+
+- dense feature
+- sparse feature
+- early stopping#
+- checkpointing
+
+- vanishing gradient problem
+- l1, l2 loss and regularisation
+- batch normalisation
+- mini-batch
+- maxnorm dropout
+- dropout / montecarlo dropout
+- momentum
+
+- convolution, filters, layers
+- feature maps
+- transfer learning
+- stride
+- step size
+- pooling / maxpooling
+
+### SVMs
+
+- kernel
+- hinge loss
+- gram matrix
+- hyperplane
+- kernel svm
+
+### Analysing models
+
+- area under ROC curve
+- precision, recall, accuracy...
+- TP, TN, FP, FN and rates for each
+- confusion matrix
+- metric
+- validation
+- cross-validation
+- prediction
+- inference
+- interpretability
+
+---
+
+## Regression
+
+- regression
+- supervised learning
 - least square regression
 - linear model
 - linear regression
-- logistic regression
-- log loss
-- loss
-- loss curve
-- machine learning
-- markov property
-- mean absolute error
-- mean squared error
-- metric
-- mini-batch
-- model
-- model training
-- momentum
-- neural network
-- gram matrix
-- noise
-- signal
-- normalisation
-- numerical data
-- objective function
-- one-hot encoding
-- one-shot learning
-- optimiser
-- outliers
-- output layer
-- overfitting / underfitting / generalisation
-- perceptron
-- pipeline
-- pooling
-- prediction
-- preprocessing
-- prior belief
-- random forrest
-- regression
-- sampling bias
-- selection bias
-- sigmoid, relu, tanh, selu, softmax...
-- sparsity
-- stochastic gradient descent
-- stride
-- transfer learning
+
+- class
+- label
 - unlabelled example
-- validation
-- vanishing gradient probelm
-- weight
+- numerical features: continuous, discrete
+- categorical features 
+- one-hot encoding
+- embedding
+- pipeline
+- preprocessing
+- independetly distributed
+- 
+- feature engineering
+- synthetic feature
+- feature extraction
+- feature set
+- data augmentation
+
+- in group bias
+- ground truth
+- prior belief
+- sampling bias 
+- selection bias
+- outliers
+
+### Bayesian linear regression
+
+- bayes theorum
+- bayes rule
+- bayesian statistics / logic
+- bayesian linear regression
+- markov property
+- markov chain
+- mcmc / metropolis?
+
+---
+
+## Ensemble learning
+
+- supervised learning
+- ensemble
+
+### Random forrest
+
+- decision tree
+- random forest
+- decision boundaries
+
+### Stacking
+
+- stacking
+- boosting
+- binning / bucketing

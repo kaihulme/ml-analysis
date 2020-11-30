@@ -1,5 +1,10 @@
 # Machine Learning Methods
 
+#### Machine learning
+
+- What is machine learning and AI?
+- Signal and the noise.
+
 ## 1. Data Analysis
 
 #### Data analysis
@@ -84,6 +89,7 @@
 
 #### Clustering and visualising MNIST
 - 10 clusters, 2 dimensions
+  - plot cluster centroids on plot
   - veronoi graph
   - accuracy
 
@@ -100,6 +106,7 @@
 - limits of kmeans
 
 #### Other clustering methods
+  - kmedian
   - analyse gaussian mixures
   - bayesian gaussian mixtures
   - dbscan?
@@ -111,9 +118,30 @@
 
 #### Supervised learning
 - What is supervised learning?
+- Training
+- Fitting
+- Labels
+- Error / cost / objective functions
 
 #### Classification
 - What is classification?
+- Different approaches
+  - Logistic regression - log loss
+  - ANNs, SVMs
+  - ...
+
+#### No free lunch
+- Model selection.
+- Parametric / nonparametric models.
+- Discriminitive / generative modelling.
+
+#### Overfitting
+- Overfitting
+- Underfitting
+- Generalisation
+
+#### Optimisation
+- Hyperparameters
 
 #### MNIST
 - The aim of classification with MNIST
@@ -124,37 +152,253 @@
   - Target feature of dataset (class)
 
 #### Preparing the data
-- get the data
+- Get the data
   - train, val test sets
   - cross validation
+  - reshape / retype
 
 ### 2.1 Artificial Neural Networks (ANNs)
 
 Train an ANN, plot the training and validation learning curves.  Does themodel overfit?  What are your results in the testing dataset?  Interpret anddiscuss your results.  How do they compare with SVMs?  How do the hyper-pameters (e.g.  learning rate) impact on performance?
 
+#### Neurons
+- Neurons structure
+- Action potentials ~ activation functions
+- Weights, connections etc.
+
+#### The perceptron
+- Perceptron history
+- Input layer
+- Output laer
+- Activation function
+- Weights
+- Bias
+- Try and apply it to MNIST (lots of neurons?)
+
+#### Multi-layer perceptron
+- Multiple layers of neurons
+- Able to learn more complex patterns
+
+#### Training MLPs
+- Forward pass
+- Backward pass
+- Epochs, convergence
+
+#### Forward pass
+- Calculation of outputs from input
+- Calculates loss
+
+#### Backpropogation
+- Gradient descent
+- Learning rate
+- Minimise loss function
+- Convex optimisation problem
+- Chain rule
+
+#### Stochastic gradient descent
+- What is SGD
+- Diagram
+
+#### Cross entropy
+- What is cross entropy
+- Sparse categorical crossentropy
+
+#### Classifying MNIST
+- Feed forward network
+- Dense layers
+- Epochs, convergence
+- Create a simple MLP for MNIST
+
+#### Deeper neural networks
+- Create a large overfitting network
+- Early stopping, checkpointing
+
+#### Vanishing / exploding gradient problem
+- What is the vanishing gradient problem
+
+#### Initlialisation
+- Gloroot initialisation
+
+#### Saturating activation functions
+- Leaky relu
+- Selu
+- Tanh...
+
+#### Batching
+- Batch normalisation
+- Mini-batch
+- Implement batching
+
+#### Gradient clipping
+- Gradient clipping
+
+#### Optimisation
+- Momentum
+- Adam
+- ...
+
+#### Overfitting
+- Why large networks can overfit
+- l1, l2 loss and regularisation
+- Implement regularisation
+- Dropout, montecarlo dropout
+- Create a network with dropout
+
+#### Convolutional neural networks (CNN)
+- Problems with neural networks and images
+- Convolutions, filters
+- Convolutional layers, feature maps
+- Simple CNN for MNIST
+
+#### Training better CNNs
+- Stride, step
+- Pooling, maxpooling
+- Better CNN
+
+#### Transfer learning
+- What is transfer learning
+- Use transfer learning with MNIST
+
 ### 2.2 Support Vector Machines (SVMs)
 
 Train an SVM (with a chosen Kernel) and perform the same analyses as forANNs.   Interpret  and  discuss  your  results.   Does  the  model  overfit?   Howdo they compare with ANNs?  And why?  How does the type of kernel (e.g.linear, RBF, etc.) impact on performance?
 
+#### Support vector machines
+- Hyperplane
+- Support vectors
+- Minimising legrange multiplier (MIT)
+
+#### Linear SVM
+- Implementation of SVM on MNIST
+
+#### Probabilistic SVM
+- What is a probabilistic SVM?
+- PSVM on MNIST
+
+#### The dual problem
+What is the dual problem
+
+#### Kernels
+- Different representations
+- Kernels
+- Mercer's thoerum
+- Gram matrix
+
+#### The kernel trick
+- What is the kernel tricl
+
+#### Kernel SVMs
+- How kernel SVMs work
+
+#### Polynomial KSVM
+- What is the polynomial kernel
+- Implementation
+
+#### RBF KSVM
+- What is the RBF kernel
+- Implementation
+
+#### Sigmoid KSVM
+- Whatis the sigmoid kernel
+- Implementation
+
+#### Optimising SVMs
+- Hinge loss
+- Grid search hyperparameters
+
+#### Limitations of SVMs
+
 ### Comparison of Methods
 - Comparison of neural networks and support vector machines.
+- Area under ROC curve
+- Precision, recall, accuracy...
+- TP, TN, FP, FN and rates for each
+- Confusion matrix
+- Metric
+- Validation
+- Cross-validation
+- Prediction
+- Inference
+- Interpretability
 
 ## 3. Regression
 
+#### Regression
 - What is regression
+- Supervised learning
+
+#### Linear regression
+- Linear model
+- Common approaches
+  - Least squares
+  - Bayesian linear regression
+
+#### California housing dataset
+- Download data
+- Put in pandas dataframe
 - Analysis of dataset
   - Size, shape, type
   - Features
-  - Missing data, outliers etc.
   - Target feature of dataset
+
+#### Geographical data
+- Plot geographical data (with plotly?)
+
+#### Correlations
+- Look at correlations between features
+- PCA?
+
+#### Missing data
+- Check for missing data
+- Handle missing data
+
+#### Outliers
+- Check for outliers
+- Handle / justify outliers
+
+#### Feature engineering
+- Feature engineering
+- Feature selection
+- Feature set
+
+#### Categorical features
+- Handle categorical features
+- One-hot encoding?
+
+#### Pipeline
+- Create pipeline
+
+#### Notes on sampling
+- in group bias
+- ground truth
+- prior belief
+- sampling bias 
+- selection bias
 
 ### Bayesian Linear Regression
 
-- In this task you are required to use PyMC3 to perform Bayesian linear re-gression on the California housing dataset which is easily available via the `sklearn.datasets.fetch_californiahousing` function. 
-- The goal with this datasetis to predict the median house value in a ‘block’ in California. A block is a small geographical area with a population of between 600 and 3000 people. 
-- Each data point in  this dataset corresponds to a block. Consult the scikit-learn documentation for details of the predictor variables. 
-- As always with Bayesian analysis it is up to you to choose your prior distributions. Be sure to justify your choice of priors in your report. What do the results produced by PyMC3 tell you about what influences house value in California? 
-- Is it necessary and/or useful to transform the data in some way before running MCMC?
+#### Bayes Theorum
+- Bayes theorum
+- Bayes rule
+- Bayesian statistics
+
+#### Prior beliefs
+- Prior for Bayesian
+
+#### MCMC
+- Markov chain
+- Markov property
+- MCMC 
+- Metropolis Hastings
+
+#### Bayesian linear regression
+- Fit linear regressor
+
+#### Optimisation
+- Hyper parameter tuning
+- Feature engineering
+- Feature selection
+- Normalisation
 
 ### Conclusion
 - Concluding points on things learnt from dataset.
@@ -162,13 +406,40 @@ Train an SVM (with a chosen Kernel) and perform the same analyses as forANNs.   
 
 ## 4. Ensemble Learning
 
+# Wisdom of the crowds
+- Wisdom of the crowds
+
+#### Ensemble methods
 - What is ensemble learning?
-- Wisdom of the crowds, weak learners etc.
+- vVting classifiers
+- Weak learners etc.
+
+#### Bagging
+- What is bagging
+- Bagging and pasting
+- Out of bag evaluation
+
+#### Random bagging
+- What is random bagging
+- Random patches and subspaces
 
 ### 4.1 Random Forest
 
-This part builds on the related lab (week 7). First, run a random forestregressor for the California housing dataset, and contrast this with your previous Bayesian linear regression method. For this you can use the Ran-domForestRegressor class from Scikit-learn.
+#### Decisions trees
+- Create a decision tree
 
+#### Random forest
+- Bag a decision tree
+- Random forrest regressor
+
+#### Extra trees
+- Extremely randomised trees
+
+#### Optimisation
+- Hyperparameter optimisation
+- Gridsearch
+
+#### Tasks
 Analyse the effect of the hyperparameters of the random forest, such as the number of estimators (orbase models, i.e. the number of decision treesthat are combined into the random forest). Look at the constructor of theRandomForestRegressor class to see what hyperparameters you can set. In your analysis, include the following plots and discussions but you may wish to add further analysis of your own:
 
 1. Plot the relationship between a hyperparameter and the performanceof the model.
@@ -180,14 +451,33 @@ Analyse the effect of the hyperparameters of the random forest, such as the numb
 
 ### 4.2 Stacking
 
+#### Stacking
+- What is stacking
+
+#### Stacked regressors
+- Stack Bayesian regression with decision trees
+
+#### Tasks
 Bayesian linear regression and decision trees are two very different approachesto regression.  Ensemble methods can exploit such diversity between differentmethods to improve performance.  So now you will try combining the randomforest  and  Bayesian  linear  regression  usingstacking.   Scikit-learn  includesthe  StackingRegressor  class  to  help  you  with  this.   In  the  report,  explainthe stacking approach and describe your results,  making sure to cover thefollowing points:
 
 1. When does stacking improve performance over the individual models (e.g. try stacking with a random forest with maxdepth=10 and nestimators=10)?
 2. What happens if we just take the mean prediction from our base models instead?
 3. Use a DecisionTreeRegressor as the finalestimator and visualise the tree to understand what stacking is doing.
 
+#### Boosting
+- What is boosting
+
+#### Gradient boosting
+- What is gradient boosting?
+
+#### XGBoost
+- Implment XGBoost regression for housing data
+
+#### Stacking gradient
+- Try stacking XGBoost regressors
+
 ### Comparison of Methods
-- Comparison of random forrest and stacking methods
+- Comparison of random forest and stacking methods
   - Accuracy
   - Computational complexity
   - Data needed
