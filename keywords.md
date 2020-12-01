@@ -27,8 +27,8 @@
 
 - centroid
 - cluster
-- kmeans
-- kmedian?
+- KMeans
+- KMedian?
 
 ---
 
