@@ -397,7 +397,7 @@ What is the dual problem
 
 - Linear model
 - Common approaches
-  - Least squares
+  - Least squares (frequentist)
   - Bayesian linear regression
 
 #### California housing dataset
@@ -428,7 +428,7 @@ What is the dual problem
 - Check for outliers
 - Handle / justify outliers
 
-#### Feature engineering
+#### Feature engineering and selection
 
 - Feature engineering
 - Feature selection
@@ -438,10 +438,6 @@ What is the dual problem
 
 - Handle categorical features
 - One-hot encoding?
-
-#### Pipeline
-
-- Create pipeline
 
 #### Notes on sampling
 
@@ -460,10 +456,6 @@ What is the dual problem
 - Bayes rule
 - Bayesian statistics
 
-#### Prior beliefs
-
-- Prior for Bayesian
-
 #### MCMC
 
 - Markov chain
@@ -473,7 +465,34 @@ What is the dual problem
 
 #### Bayesian linear regression
 
+- What is bayesian linear regression
+
+#### Prior beliefs
+
+- Prior for Bayesian
+- Log-normal distribution
+
+#### Prepare data for model
+
+- Test train val split
+- Scaling
+
+#### Pipeline
+
+- Create pipeline
+
+#### Performance measure
+
+- Define the performance measure of the model.
+- MSE / RMSE
+
+#### Training the model
+
 - Fit linear regressor
+
+#### Evaluation of model
+
+- Evaluate model performance on val / test set
 
 #### Bayesian linear regression optimisation
 
@@ -481,6 +500,10 @@ What is the dual problem
 - Feature engineering
 - Feature selection
 - Normalisation
+- Distance to LA / SF
+- Log of dataset
+- Handle cut-offs
+- Ridge / lasso regression
 
 ### Regression conclusion
 
@@ -559,7 +582,7 @@ Bayesian linear regression and decision trees are two very different approaches 
 
 Scikit-learn  includes the  StackingRegressor  class  to  help  you  with  this.   In  the  report,  explain the stacking approach and describe your results,  making sure to cover the following points:
 
-1. When does stacking improve performance over the individual models (e.g. try stacking with a random forest with maxdepth=10 and nestimators=10)?
+1. When does stacking improve performance over the individual models (e.g. try stacking with a random forest with 'maxdepth=10' and 'nestimators=10')?
 2. What happens if we just take the mean prediction from our base models instead?
 3. Use a DecisionTreeRegressor as the final estimator and visualise the tree to understand what stacking is doing.
 
