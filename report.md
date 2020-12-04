@@ -171,6 +171,7 @@
 #### Classification with MNIST
 
 - The aim of classification with MNIST
+- Get the data
 - Recap analysis
   - Size, shape, type
   - Features
@@ -179,7 +180,6 @@
 
 #### Preparing the data
 
-- Get the data
   - train, val test sets
   - cross validation
   - reshape / retype
@@ -350,7 +350,7 @@ What is the dual problem
 - What is the polynomial kernel
 - Implementation
 
-#### RBF KSVM
+#### Radial basis function (RBF) KSVM
 
 - What is the RBF kernel
 - Implementation
@@ -366,6 +366,8 @@ What is the dual problem
 - Grid search hyperparameters
 
 #### Limitations of SVMs
+
+- Problems with SVMs
 
 ### Classification conclusion
 
