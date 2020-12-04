@@ -512,7 +512,7 @@ What is the dual problem
 - Concluding points on things learnt from dataset.
 - Concluding points of Bayesian regression performance.
 
-## 4. Ensemble Learning
+## 4. Ensembles
 
 ### Ensemble intro
 
