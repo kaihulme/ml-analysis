@@ -415,7 +415,7 @@ What is the dual problem
 
 - Plot geographical data (with Plotly?)
 
-#### Correlations
+#### Correlation and distribution
 
 - Look at correlations between features
 - PCA?
