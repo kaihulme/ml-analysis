@@ -1,0 +1,152 @@
+import os
+import time
+import numpy as np
+import tensorflow as tf
+import matplotlib.pyplot as plt
+from sklearn.datasets import fetch_openml
+from sklearn.model_selection import train_test_split
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import Dense, Conv2D, MaxPooling2D, BatchNormalization, Dropout, Flatten, Reshape
+from tensorflow.keras.optimizers import Adam
+from tensorflow.keras.optimizers.schedules import ExponentialDecay
+from tensorflow.keras.callbacks import EarlyStopping, TensorBoardgit-
+from tensorflow.keras.backend import clear_session
+
+# clear tf backend
+clear_session()
+
+gpus = tf.config.experimental.list_physical_devices('GPU')
+if gpus:
+	try:
+		for gpu in gpus:
+			tf.config.experimental.set_memory_growth(gpu, True)
+	except RuntimeError as e:
+		print(e)
+
+# get MNIST data and prepare for model
+X, y = fetch_openml('mnist_784', return_X_y=True)
+X = np.asarray(X)
+y = np.asarray(y)
+
+# normalise and convert types
+X_full = X / 255.0
+y_full = y.astype('int64')
+
+# reshape as 28x28 images
+X_full = X_full.reshape((-1, 28, 28, 1))
+
+# create train, val and test set
+X_train, X_test, y_train, y_test = train_test_split(X_full, y_full,
+                                                    test_size=0.2)
+X_train, X_val, y_train, y_val = train_test_split(X_train, y_train,
+                                                  test_size=0.1)
+
+
+# tensorboard log dir getter
+def get_tb_dir():
+    curr_dir = os.path.join(os.curdir, "tensorboard_logs")
+    tb_dir = time.strftime("model_%Y_%m_%d-%H-%M-%S")
+    return os.path.join(curr_dir, tb_dir)
+
+
+# create callbacks for model training
+tensorboard_cb = TensorBoard(get_tb_dir())
+early_stopping_cb = EarlyStopping(patience=5, restore_best_weights=True)
+callbacks = [tensorboard_cb, early_stopping_cb]
+
+# Epochs and batch size
+epochs = 1000
+batch_size = 32
+
+# Exponentialy decaying learning rate
+s = epochs * len(X_train) // batch_size
+exp_decay_lr = ExponentialDecay(0.01, s, 0.1)
+
+print(X_train.shape)
+
+# CNN maxpooling model
+pool_model = Sequential()
+
+# input conv layer
+pool_model.add(Conv2D(64, kernel_size=(3, 3), padding="same",
+			   activation="relu", input_shape=(28, 28, 1)))
+
+# hidden conv + pool layer
+pool_model.add(Conv2D(64, kernel_size=(3, 3), padding="same",
+			   activation="relu"))
+pool_model.add(MaxPooling2D(pool_size=(2,2)))
+
+# batch normalised hidden conv + pool layer
+pool_model.add(BatchNormalization())
+pool_model.add(Conv2D(128, kernel_size=(3, 3), padding="same",
+			   activation="relu"))
+pool_model.add(MaxPooling2D(pool_size=(2,2)))
+
+# batch normalised hidden conv + pool layer
+pool_model.add(BatchNormalization())
+pool_model.add(Conv2D(128, kernel_size=(3, 3), padding="same",
+			   activation="relu"))
+pool_model.add(MaxPooling2D(pool_size=(2,2)))
+
+# batch normalised hidden conv + pool layer
+pool_model.add(BatchNormalization())
+pool_model.add(Conv2D(256, kernel_size=(3, 3), padding="same",
+   			   activation="relu"))
+pool_model.add(MaxPooling2D(pool_size=(2,2)))
+
+# batch normalised hidden conv + pool layer
+pool_model.add(BatchNormalization())
+pool_model.add(Conv2D(256, kernel_size=(3, 3), padding="same",
+   			   activation="relu"))
+pool_model.add(MaxPooling2D(pool_size=(2,2)))
+
+# batch normalised hidden conv + pool layer
+pool_model.add(BatchNormalization())
+pool_model.add(Conv2D(512, kernel_size=(3, 3), padding="same",
+   			   activation="relu"))
+pool_model.add(MaxPooling2D(pool_size=(2,2)))
+
+# batch normalised hidden conv + pool layer
+pool_model.add(BatchNormalization())
+pool_model.add(Conv2D(512, kernel_size=(3, 3), padding="same",
+   			   activation="relu"))
+pool_model.add(MaxPooling2D(pool_size=(2,2)))
+
+# flatten and normalise + dense relu layer
+pool_model.add(Flatten())
+pool_model.add(BatchNormalization())
+pool_model.add(Dense(512, activation="relu"))
+
+# output layer
+pool_model.add(Dense(10, activation="softmax"))
+
+pool_model.compile(loss="sparse_categorical_crossentropy",
+                   optimizer=Adam(exp_decay_lr), metrics=["accuracy"])
+
+# fit model with minibatches
+history = pool_model.fit(X_train, y_train,
+						 epochs=epochs, batch_size=batch_size,
+                         validation_data=(X_val, y_val),
+                         callbacks=callbacks)
+
+pool_model.save('models/bigpoolmodel')
+
+pool_model.evaluate(X_test, y_test)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

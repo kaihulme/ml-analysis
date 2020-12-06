@@ -63,7 +63,7 @@ for i in range(20):
     adam_model.add(BatchNormalization())
 adam_model.add(Dense(10, activation="softmax"))
 adam_model.compile(loss="sparse_categorical_crossentropy",
-                   optimizer=Adam(learning_rate), metrics=["accuracy"])
+                   optimizer=Adam(exp_decay_lr), metrics=["accuracy"])
 
 # fit model with minibatches
 history = adam_model.fit(X_train, y_train,
@@ -71,6 +71,6 @@ history = adam_model.fit(X_train, y_train,
                          validation_data=(X_val, y_val),
                          callbacks=callbacks)
 
-adam_model.save('models/adambatchmodel')
+adam_model.save('models/expmodel')
 
 adam_model.evaluate(X_test, y_test)

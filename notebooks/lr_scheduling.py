@@ -71,6 +71,6 @@ history = adam_model.fit(X_train, y_train,
                          validation_data=(X_val, y_val),
                          callbacks=callbacks)
 
-adam_model.save('models/adambatchmodel')
+adam_model.save('models/explrdecaymodel')
 
 adam_model.evaluate(X_test, y_test)
