@@ -46,6 +46,14 @@ tensorboard_cb = TensorBoard(get_tb_dir())
 early_stopping_cb = EarlyStopping(patience=10, restore_best_weights=True)
 callbacks = [tensorboard_cb, early_stopping_cb]
 
+# Epochs and batch size
+epochs = 20
+batch_size = 32
+
+# Exponentialy decaying learning rate
+s = epochs * len(X_train) // batch_size
+exp_decay_lr = ExponentialDecay(0.01, s, 0.1)
+
 # Adam model
 adam_model = Sequential()
 adam_model.add(Dense(100, activation="relu"))
@@ -55,10 +63,11 @@ for i in range(20):
     adam_model.add(BatchNormalization())
 adam_model.add(Dense(10, activation="softmax"))
 adam_model.compile(loss="sparse_categorical_crossentropy",
-                   optimizer=Adam(), metrics=["accuracy"])
+                   optimizer=Adam(learning_rate), metrics=["accuracy"])
 
 # fit model with minibatches
-history = adam_model.fit(X_train, y_train, epochs=20, batch_size=16,
+history = adam_model.fit(X_train, y_train,
+						 epochs=epochs, batch_size=batch_size,
                          validation_data=(X_val, y_val),
                          callbacks=callbacks)
 
