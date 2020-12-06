@@ -100,31 +100,31 @@ bigcnn_model.add(Conv2D(256, kernel_size=(3, 3),
    			   	 activation="relu"))
 bigcnn_model.add(MaxPooling2D(pool_size=(2,2), padding="same"))
 
-# # batch normalised hidden conv + pool layer
-# bigcnn_model.add(BatchNormalization())
-# bigcnn_model.add(Conv2D(256, kernel_size=(3, 3),
-# 				 padding="same", #strides=(2, 2),
-#    			     activation="relu"))
-# bigcnn_model.add(MaxPooling2D(pool_size=(2,2)))
+# batch normalised hidden conv + pool layer
+bigcnn_model.add(BatchNormalization())
+bigcnn_model.add(Conv2D(256, kernel_size=(3, 3),
+				 padding="same", strides=(2, 2),
+   			     activation="relu"))
+bigcnn_model.add(MaxPooling2D(pool_size=(2,2)))
 
-# # batch normalised hidden conv + pool layer
-# bigcnn_model.add(BatchNormalization())
-# bigcnn_model.add(Conv2D(512, kernel_size=(3, 3),
-# 				 padding="same", #strides=(2, 2),
-#    			     activation="relu"))
-# bigcnn_model.add(MaxPooling2D(pool_size=(2,2)))
+# batch normalised hidden conv + pool layer
+bigcnn_model.add(BatchNormalization())
+bigcnn_model.add(Conv2D(512, kernel_size=(3, 3),
+				 padding="same", strides=(2, 2),
+   			     activation="relu"))
+bigcnn_model.add(MaxPooling2D(pool_size=(2,2), padding="same")))
 
-# # batch normalised hidden conv + pool layer
-# bigcnn_model.add(BatchNormalization())
-# bigcnn_model.add(Conv2D(512, kernel_size=(3, 3), 
-# 				 padding="same", #strides=(2, 2),
-#    			     activation="relu"))
-# bigcnn_model.add(MaxPooling2D(pool_size=(2,2)))
+# batch normalised hidden conv + pool layer
+bigcnn_model.add(BatchNormalization())
+bigcnn_model.add(Conv2D(512, kernel_size=(3, 3), 
+				 padding="same", strides=(2, 2),
+   			     activation="relu"))
+bigcnn_model.add(MaxPooling2D(pool_size=(2,2), padding="same")))
 
 # flatten and normalise + dense relu layer
 bigcnn_model.add(Flatten())
 bigcnn_model.add(BatchNormalization())
-bigcnn_model.add(Dense(256, activation="relu"))
+bigcnn_model.add(Dense(512, activation="relu"))
 
 # output layer
 bigcnn_model.add(Dense(10, activation="softmax"))
