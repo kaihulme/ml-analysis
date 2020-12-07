@@ -2,6 +2,7 @@ import numpy as np
 import pandas as pd
 import pymc3 as pm
 from sklearn.base import BaseEstimator, RegressorMixin
+from sklearn.metrics import mean_squared_error, r2_score
 
 
 class BayesianLinearRegression(BaseEstimator, RegressorMixin):
@@ -10,13 +11,18 @@ class BayesianLinearRegression(BaseEstimator, RegressorMixin):
         self.model = []
         self.trace_ = []
         self.mean_coeffs_ = []
-        self.mae_ = 0
+        self.mse_ = 0
         self.rmse_ = 0
+        self.r2_ = 0
 
     # 'fit' to training data by sampling from mdoel with MCMC
-    def fit(self, X, y, n_samples=1000, n_tune=500, n_cores=2):
-        formula = "MedHouseVal ~ MedInc + AveOccup + AveBedrmsPerRoom +\
-                   AveAddRooms + EstHouses + DistToCity"
+    def fit(self, X, y, formula="null", n_samples=1000, n_tune=500, n_cores=2):
+        if (formula == "null"):
+            formula = y.columns[0] + " ~ "
+            for name in X.columns:
+                formula += name + " + "
+            formula = formula[:-3]
+        print(f"Sampling with formula:\n{formula}\n")
         data = pd.concat((y, X), axis=1)
         with pm.Model() as self.model_:
             # Normal prior
@@ -43,9 +49,12 @@ class BayesianLinearRegression(BaseEstimator, RegressorMixin):
     # calculate mae and rmse for model on X, y
     def score(self, X, y):
         preds = self.predict(X)
-        # calculate mae, rmse
-        labels = np.asarray(y).reshape(-1)
-        errors = preds - labels
-        self.mae_ = np.mean(abs(errors))
-        self.rmse_ = np.sqrt(np.mean(errors**2))
-        return self.rmse_
+        # calculate mse, rmse, r2
+        self.mse_ = mean_squared_error(y, preds)
+        self.rmse_ = mean_squared_error(y, preds, squared=False)
+        self.r2_ = r2_score(y, preds)
+#         labels = np.asarray(y).reshape(-1)
+#         errors = preds - labels
+#         self.mae_ = np.mean(abs(errors))
+#         self.rmse_ = np.sqrt(np.mean(errors**2))
+        return self.r2_
