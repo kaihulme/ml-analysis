@@ -3,20 +3,22 @@ import pandas as pd
 from sklearn.datasets import fetch_california_housing
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import QuantileTransformer  # , StandardScaler
+#  from sklearn.pipeline import Pipeline
 
 
-def get_transformed_california_data():
+def load_train_test():
     """
     Get and transform California housing data for model.
     Parameters:
         None
     Returns:
         X_train - Transformed California housing training data
-        X_test - Transformed California housing testing data
+        X_test  - Transformed California housing testing data
         y_train - Transformed California housing training values
-        y_test - California housing test values
+        y_test  - California housing test values
     """
-    df = fetch_california_housing(as_frame=True)
+    data = fetch_california_housing(as_frame=True)
+    df = data['frame']
     X_train, X_test, y_train, y_test = transform_california_data(df)
     return X_train, X_test, y_train, y_test
 
@@ -48,8 +50,10 @@ def cut_features(df):
 
 def add_features(df):
     df['AveBedrmsPerRoom'] = df['AveBedrms'] / df['AveRooms']
+    df['AveAddRooms'] = df['AveRooms'] - df['AveBedrms']
     df['EstHouses'] = df['Population'] / df['AveOccup']
     df = add_geo_features(df)
+    return df
 
 
 def add_geo_features(df):
@@ -82,8 +86,8 @@ def normal_transform(df):
 def remove_features(df):
     remove = ['AveRooms', 'AveBedrms', 'Latitude',
               'Longitude', 'Population', 'HouseAge']
-    df = df.drop(remove, axis=1, inplace=True)
-    return df
+    df_removed = df.drop(remove, axis=1, inplace=False)
+    return df_removed
 
 
 def get_train_test(df):
