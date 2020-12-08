@@ -24,7 +24,8 @@ def load_train_test(transformer="normal", test_size=0.2):
     """
     data = fetch_california_housing(as_frame=True)
     df = data['frame']
-    X_train, X_test, y_train, y_test = transform_california_data(df)
+    X_train, X_test, y_train, y_test = transform_california_data(df,transformer,
+                                                                 test_size)
     return X_train, X_test, y_train, y_test
 
 
@@ -58,7 +59,7 @@ def cut_features(df):
     df = df.drop(df[(df['HouseAge'] > 50) | (df['MedHouseVal'] > 1.75)].index)
     return df
 
-b
+
 def add_features(df):
     df['AveBedrmsPerRoom'] = df['AveBedrms'] / df['AveRooms']
     df['AveAddRooms'] = df['AveRooms'] - df['AveBedrms']
