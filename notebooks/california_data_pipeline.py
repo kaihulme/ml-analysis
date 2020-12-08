@@ -2,15 +2,20 @@ import numpy as np
 import pandas as pd
 from sklearn.datasets import fetch_california_housing
 from sklearn.model_selection import train_test_split
-from sklearn.preprocessing import QuantileTransformer  # , StandardScaler
+from sklearn.preprocessing import QuantileTransformer, StandardScaler
 #  from sklearn.pipeline import Pipeline
 
 
-def load_train_test():
+def load_train_test(transformer="normal", test_size=0.2):
     """
     Get and transform California housing data for model.
     Parameters:
-        None
+        transformer - Transformation type:
+            - normal:   QuantileTransformer(output_distribution="normal")
+            - standard: StandardScaler()
+            - both:     both normal and standard transformations
+        test_size - Size of the test set as decimal fraction of 1
+            - e.g. test_size=0.2 gives train_size=0.8
     Returns:
         X_train - Transformed California housing training data
         X_test  - Transformed California housing testing data
@@ -23,13 +28,19 @@ def load_train_test():
     return X_train, X_test, y_train, y_test
 
 
-def transform_california_data(df):
+def transform_california_data(df, transformer, test_size):
     df = log_features(df)
     df = cut_features(df)
     df = add_features(df)
-    df = normal_transform(df)
     df = remove_features(df)
-    X_train, X_test, y_train, y_test = get_train_test(df)
+    if (transformer == "normal"):
+        df = normal_transform(df)
+    elif (transformer == "standard_scaler"):
+        df = standard_transform(df)
+    elif (transformer == "both"):
+        df = normal_transform(df)
+        df = standard_transform(df)
+    X_train, X_test, y_train, y_test = get_train_test(df, test_size)
     return X_train, X_test, y_train, y_test
 
 
@@ -47,7 +58,7 @@ def cut_features(df):
     df = df.drop(df[(df['HouseAge'] > 50) | (df['MedHouseVal'] > 1.75)].index)
     return df
 
-
+b
 def add_features(df):
     df['AveBedrmsPerRoom'] = df['AveBedrms'] / df['AveRooms']
     df['AveAddRooms'] = df['AveRooms'] - df['AveBedrms']
@@ -77,12 +88,6 @@ def add_geo_features(df):
     return df
 
 
-def normal_transform(df):
-    qt = QuantileTransformer(output_distribution="normal")
-    df = pd.DataFrame(qt.fit_transform(df), columns=df.columns)
-    return df
-
-
 def remove_features(df):
     remove = ['AveRooms', 'AveBedrms', 'Latitude',
               'Longitude', 'Population', 'HouseAge']
@@ -90,11 +95,23 @@ def remove_features(df):
     return df_removed
 
 
-def get_train_test(df):
+def normal_transform(df):
+    qt = QuantileTransformer(output_distribution="normal")
+    df = pd.DataFrame(qt.fit_transform(df), columns=df.columns)
+    return df
+
+
+def standard_transform(df):
+    scaler = StandardScaler()
+    df = pd.DataFrame(scaler.fit_transform(df), columns=df.columns)
+    return df
+
+
+def get_train_test(df, size):
     X_features = ['MedInc', 'AveOccup', 'AveBedrmsPerRoom',
                   'AveAddRooms', 'EstHouses', 'DistToTown']
     y_features = ['MedHouseVal']
     X = df[X_features]
     y = df[y_features]
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=size)
     return X_train, X_test, y_train, y_test
