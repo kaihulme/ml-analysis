@@ -36,7 +36,7 @@ class BayesianLinearRegression(BaseEstimator, RegressorMixin):
     def fit(self, X, y, n_samples=5000, n_tune=2000, n_cores=8):
         # generate formula
         if (self.is_frame):
-            formula = y.columns + " ~ "
+            formula = y.columns[0] + " ~ "
             for name in X.columns:
                 formula += name + " + "
             formula = formula[:-3]

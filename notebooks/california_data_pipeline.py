@@ -6,7 +6,7 @@ from sklearn.preprocessing import QuantileTransformer, StandardScaler
 #  from sklearn.pipeline import Pipeline
 
 
-def load_train_test(transformer="normal", test_size=0.2):
+def load_train_test(transformer="normal", test_size=0.2, scale_target=True):
     """
     Get and transform California housing data for model.
     Parameters:
@@ -24,39 +24,41 @@ def load_train_test(transformer="normal", test_size=0.2):
     """
     data = fetch_california_housing(as_frame=True)
     df = data['frame']
-    X_train, X_test, y_train, y_test = transform_california_data(df,transformer,
-                                                                 test_size)
+    X_train, X_test, y_train, y_test = transform_california_data(df, transformer,
+                                                                 test_size, scale_target)
     return X_train, X_test, y_train, y_test
 
 
-def transform_california_data(df, transformer, test_size):
-    df = log_features(df)
-    df = cut_features(df)
+def transform_california_data(df, transformer, test_size, scale_target):
+    df = log_features(df, scale_target)
+    df = cut_features(df, scale_target)
     df = add_features(df)
     df = remove_features(df)
     if (transformer == "normal"):
-        df = normal_transform(df)
+        df = normal_transform(df, scale_target)
     elif (transformer == "standard_scaler"):
-        df = standard_transform(df)
+        df = standard_transform(df, scale_target)
     elif (transformer == "both"):
-        df = normal_transform(df)
-        df = standard_transform(df)
+        df = normal_transform(df, scale_target)
+        df = standard_transform(df, scale_target)
     X_train, X_test, y_train, y_test = get_train_test(df, test_size)
     return X_train, X_test, y_train, y_test
 
 
-def log_features(df):
+def log_features(df, scale_target):
     df["MedInc"] = np.log1p(df['MedInc'])
     df["AveRooms"] = np.log1p(df['AveRooms'])
     df["AveBedrms"] = np.log1p(df['AveBedrms'])
     df["Population"] = np.log1p(df['Population'])
     df["AveOccup"] = np.log1p(df['AveOccup'])
-    df["MedHouseVal"] = np.log1p(df['MedHouseVal'])
+    if scale_target:
+        df["MedHouseVal"] = np.log1p(df['MedHouseVal'])
     return df
 
 
-def cut_features(df):
-    df = df.drop(df[(df['HouseAge'] > 50) | (df['MedHouseVal'] > 1.75)].index)
+def cut_features(df, scale_target):
+    if scale_target:
+        df = df.drop(df[(df['HouseAge'] > 50) | (df['MedHouseVal'] > 1.75)].index)
     return df
 
 
@@ -96,15 +98,23 @@ def remove_features(df):
     return df_removed
 
 
-def normal_transform(df):
+def normal_transform(df, scale_target):
     qt = QuantileTransformer(output_distribution="normal")
+    if not scale_target:
+        target = df['MedHouseVal']
     df = pd.DataFrame(qt.fit_transform(df), columns=df.columns)
+    if not scale_target:
+        df['MedHouseVal'] = target
     return df
 
 
-def standard_transform(df):
+def standard_transform(df, scale_target):
     scaler = StandardScaler()
+    if not scale_target:
+        target = df['MedHouseVal']
     df = pd.DataFrame(scaler.fit_transform(df), columns=df.columns)
+    if not scale_target:
+        df['MedHouseVal'] = target
     return df
 
 
