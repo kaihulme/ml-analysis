@@ -71,60 +71,68 @@ bigcnn_model = Sequential()
 # input conv layer
 bigcnn_model.add(Conv2D(64, kernel_size=(3, 3), 
 			     padding="same", strides=(2, 2),
-			     activation="relu", input_shape=(28, 28, 1)))
+			     activation="relu",
+			     input_shape=(28, 28, 1)))
 
 # hidden conv + pool layer
 bigcnn_model.add(Conv2D(64, kernel_size=(3, 3), 
  				 padding="same", strides=(2, 2),
 			     activation="relu"))
-bigcnn_model.add(MaxPooling2D(pool_size=(2,2), padding="same"))
+bigcnn_model.add(MaxPooling2D(pool_size=(2,2),
+				 			  padding="same"))
 
 # batch normalised hidden conv + pool layer
 bigcnn_model.add(BatchNormalization())
 bigcnn_model.add(Conv2D(128, kernel_size=(3, 3),
 				 padding="same", strides=(2, 2),
 			     activation="relu"))
-bigcnn_model.add(MaxPooling2D(pool_size=(2,2), padding="same"))
+bigcnn_model.add(MaxPooling2D(pool_size=(2,2),
+							  padding="same"))
 
 # batch normalised hidden conv + pool layer
 bigcnn_model.add(BatchNormalization())
 bigcnn_model.add(Conv2D(128, kernel_size=(3, 3),
 				 padding="same", strides=(2, 2),
 			   	 activation="relu"))
-bigcnn_model.add(MaxPooling2D(pool_size=(2,2), padding="same"))
+bigcnn_model.add(MaxPooling2D(pool_size=(2,2),
+							  padding="same"))
 
 # batch normalised hidden conv + pool layer
 bigcnn_model.add(BatchNormalization())
 bigcnn_model.add(Conv2D(256, kernel_size=(3, 3), 
 				 padding="same", strides=(2, 2),
    			   	 activation="relu"))
-bigcnn_model.add(MaxPooling2D(pool_size=(2,2), padding="same"))
+bigcnn_model.add(MaxPooling2D(pool_size=(2,2),
+							  padding="same"))
 
 # batch normalised hidden conv + pool layer
 bigcnn_model.add(BatchNormalization())
 bigcnn_model.add(Conv2D(256, kernel_size=(3, 3),
 				 padding="same", strides=(2, 2),
    			     activation="relu"))
-bigcnn_model.add(MaxPooling2D(pool_size=(2,2)))
+bigcnn_model.add(MaxPooling2D(pool_size=(2,2),
+							  padding="same"))
 
 # batch normalised hidden conv + pool layer
 bigcnn_model.add(BatchNormalization())
-bigcnn_model.add(Conv2D(512, kernel_size=(3, 3),
+bigcnn_model.add(Conv2D(256, kernel_size=(3, 3),
 				 padding="same", strides=(2, 2),
    			     activation="relu"))
-bigcnn_model.add(MaxPooling2D(pool_size=(2,2), padding="same")))
-
+bigcnn_model.add(MaxPooling2D(pool_size=(2,2),
+							  padding="same"))
+							  
 # batch normalised hidden conv + pool layer
 bigcnn_model.add(BatchNormalization())
-bigcnn_model.add(Conv2D(512, kernel_size=(3, 3), 
+bigcnn_model.add(Conv2D(256, kernel_size=(3, 3),
 				 padding="same", strides=(2, 2),
    			     activation="relu"))
-bigcnn_model.add(MaxPooling2D(pool_size=(2,2), padding="same")))
+bigcnn_model.add(MaxPooling2D(pool_size=(2,2),
+							  padding="same"))
 
 # flatten and normalise + dense relu layer
 bigcnn_model.add(Flatten())
 bigcnn_model.add(BatchNormalization())
-bigcnn_model.add(Dense(512, activation="relu"))
+bigcnn_model.add(Dense(256, activation="relu"))
 
 # output layer
 bigcnn_model.add(Dense(10, activation="softmax"))
