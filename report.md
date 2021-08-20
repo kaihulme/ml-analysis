@@ -3,186 +3,92 @@
 - What is machine learning and AI?
 - Signal and the noise.
 
+===
+
 ## 1. Data Analysis
 
 ### Data analysis intro
 
 #### Data analysis
 
-- What is data?
-- What is data analysis?
-
 #### Unsupervised learning
-
-- What is unsupervised learning?
-
-#### The curse of dimensionality
-
-- Problems with high dimension data.
-- Relate to MNIST.
-- Describe the curse of dimensionality.
-
-#### Dimensionality reduction
-
-- What is dimensionality reduction
-- The aim of dimensionality reduction.
-- Main approaches:
-  - Projection
-  - Manifold
-- Common methods:
-  - PCA
-  - t-SNE
-  - Autoencoding
-  - ??
 
 #### MNIST
 
-- Initial analysis MNIST dataset
-  - Size, shape, type
-  - Features
-  - Missing data, outliers etc.
-  - Target feature of dataset (class)
-  
+#### The curse of dimensionality
+
+#### Dimensionality reduction
+
+---
+
 ### 1.1. Principle Component Analysis
 
 #### PCA
 
-- What is PCA?
-  - Idea
-  - Algorithm
+what is pca and algorithm
 
 #### Dimensionality reduction with PCA
 
-- Application to MNIST
-  - Projecting down to various dimensions
-  - Analysing variance ratio
-    - Few different component amounts
-    - Cumulative variance plot
-  - Reconstructions of compressed images
-    - Various compression amounts
-
-#### Other PCA methods
-
-- Different types of PCA
-  - Normal / linear
-  - Probablistic
-  - Random
-  - Incremental
-  - Kernel
-    - Various kernels
+- explain application to mnist
+- various dimensions and recronstructions
+- cummulative variance plot
++ try kernel pca
   
-#### Visualisation with PCA
+#### Dimensionality reduction for visualisation
 
+- why we want to do this
 - PCA to 2 dimensions
-  - Scatter plot
-  - Interpret results
+- compare to tnse
 
-#### Other dimensionality reduction methods for visualisation
-
-- t-SNE
-  - PCA then t-SNE
-  - Autoencoding?
+---
 
 ### 1.2. Clustering
 
 #### Clustering
 
-- What is clustering?
-- Applications
-- Different approaches
-  - KMeans
-  - Gaussian mixtures
+what is it and applications (with example)
 
 #### K-Means
 
-- What is K-Means?
-  - Idea
-  - Algorithm
+What is kmeans and general algorithm
 
-#### Clustering and visualising MNIST
+#### Clustering MNIST
 
-- 10 clusters, 2 dimensions
-  - Plot cluster centroids on plot
-  - Voronoi graph
-  - Accuracy
-
-#### Finding the optimal number of clusters
-
-- Inertia / elbow plot
-- Silhouette score
-- Silhouette diagram
-  
-#### Clustering in high-dimensional space
-
-- Various dimensions
-- Various kernels
+- cluster the pca(2) mnist
+- voronoi plot
+- compare clusters to actual
+- analyse silhoutte score
++ finding optimal clusters via elbow
 
 #### Limits of K-Means  
 
-- Limits of KMeans
+- main downsides to kmeans
+- clustering in high dimensional space
+- notes on analysing clustering performance
 
-#### Other clustering methods
+### Conclusion
 
-- KMedian
-- Analyse gaussian mixtures
-- Bayesian gaussian mixtures
-- DBScan?
+final analysis of MNIST dataset
 
-### Data analysis conclusion
-
-- Final analysis of MNIST dataset
+===
 
 ## 2. Classification
 
-### Classification intro
-
 #### Supervised learning
-
-- What is supervised learning?
-- Training
-- Fitting
-- Labels
-- Error / cost / objective functions
 
 #### Classification
 
-- What is classification?
-- Different approaches
-  - Logistic regression - log loss
-  - ANNs, SVMs
-  - ...
+#### Overfitting and Underfitting
 
-#### No free lunch
+#### Training, Testing and Validating
 
-- Model selection.
-- Parametric / nonparametric models.
-- Discriminative / generative modelling.
+#### Cross-validation
 
-#### Overfitting
-
-- Overfitting
-- Underfitting
-- Generalisation
-
-#### Optimisation
-
-- Hyperparameters
+#### Parameters and Optimisation
 
 #### Classification with MNIST
 
-- The aim of classification with MNIST
-- Get the data
-- Recap analysis
-  - Size, shape, type
-  - Features
-  - Missing data, outliers etc.
-  - Target feature of dataset (class)
-
-#### Preparing the data
-
-  - train, val test sets
-  - cross validation
-  - reshape / retype
+#### No free lunch
 
 ### 2.1. Artificial Neural Networks (ANNs)
 
@@ -532,7 +438,7 @@ What is the dual problem
 - Bagging and pasting
 - Out of bag evaluation
 
-#### Random bagging
+#### Random bagging 
 
 - What is random bagging
 - Random patches and subspaces
