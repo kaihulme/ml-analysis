@@ -3,7 +3,7 @@ import pandas as pd
 from sklearn.datasets import fetch_california_housing
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import QuantileTransformer, StandardScaler
-#  from sklearn.pipeline import Pipeline
+from sklearn.pipeline import Pipeline
 
 
 def load_train_test(transformer="normal", test_size=0.2, scale_target=True):

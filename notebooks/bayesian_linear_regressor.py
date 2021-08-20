@@ -1,4 +1,4 @@
-Esimport numpy as np
+import numpy as np
 import pandas as pd
 import pymc3 as pm
 from sklearn.base import BaseEstimator, RegressorMixin
@@ -32,8 +32,10 @@ class BayesianLinearRegression(BaseEstimator, RegressorMixin):
         self.rmse = 0
         self.r2 = 0
 
-    # 'fit' to training data by sampling from mdoel with MCMC
     def fit(self, X, y, n_samples=5000, n_tune=2000, n_cores=8):
+        """
+        'fit' to training data by sampling from mdoel with MCMC.
+        """
         # generate formula
         if (self.is_frame):
             formula = y.columns[0] + " ~ "
@@ -60,8 +62,10 @@ class BayesianLinearRegression(BaseEstimator, RegressorMixin):
                                    progressbar=True, cores=n_cores)
             return self
 
-    # predict values for X
     def predict(self, X):
+        """
+        Predict values for X using mean coefficients.
+        """
         # get mean of coefficients
         all_coeffs = np.asarray([self.trace[name] for name in self.trace.varnames])
         self.mean_coeffs = all_coeffs.mean(axis=1)
@@ -73,8 +77,10 @@ class BayesianLinearRegression(BaseEstimator, RegressorMixin):
         preds = np.dot(coeffs, X.T)
         return preds
 
-    # calculate mae and rmse for model on X, y
     def score(self, X, y):
+        """
+        Calculate mae, rmse and r2 for model on X, y.
+        """
         preds = self.predict(X)
         # calculate mse, rmse, r2
         self.mse = mean_squared_error(y, preds)
